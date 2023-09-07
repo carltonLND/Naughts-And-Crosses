@@ -17,10 +17,12 @@ interface GameBoardState {
   winner: Player | "draw" | null
 }
 
+const initialBoardSize = 3
+
 const initialState: GameBoardState = {
   currPlayer: "O",
-  boardSize: 3,
-  board: generateGrid(3),
+  boardSize: initialBoardSize,
+  board: generateGrid(initialBoardSize),
   winner: null,
 }
 
