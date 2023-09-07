@@ -21,7 +21,7 @@ function Footer() {
         padding={5}
       >
         <Link
-          href="https://github.com/carltonLND/Naughts-And-Crosses"
+          href="https://github.com/carltonLND/noughts-and-crosses"
           fontSize="2xl"
           isExternal
         >
