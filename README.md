@@ -1,4 +1,4 @@
-# Naughts And Crosses
+# Noughts And Crosses
 
 A Typescript web app designed for local play.
 
