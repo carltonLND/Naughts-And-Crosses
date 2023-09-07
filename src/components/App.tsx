@@ -9,6 +9,7 @@ function App() {
       width="100vw"
       justifyContent="space-between"
       direction="column"
+      userSelect="none"
     >
       <Game />
       <Footer />
