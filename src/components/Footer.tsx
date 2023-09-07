@@ -1,6 +1,8 @@
 import { Button, Divider, HStack, Link, VStack } from "@chakra-ui/react"
+import { AiOutlineGithub } from "react-icons/ai"
 import { useDispatch } from "react-redux"
 import { newBoard } from "../features/game/gameSlice"
+import { Icon } from "@chakra-ui/react"
 
 function Footer() {
   const dispatch = useDispatch()
@@ -23,7 +25,7 @@ function Footer() {
           fontSize="2xl"
           isExternal
         >
-          GitHub
+          <Icon as={AiOutlineGithub} /> GitHub
         </Link>
         <Button onClick={handleOnClick}>Restart Game</Button>
       </HStack>
