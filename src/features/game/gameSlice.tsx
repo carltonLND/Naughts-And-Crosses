@@ -48,9 +48,7 @@ export const gameSlice = createSlice({
 
       if (checkWin(state.board, state.currPlayer)) {
         state.winner = state.currPlayer
-      }
-
-      if (checkDraw(state.board)) {
+      }  else if (checkDraw(state.board)) {
         state.winner = "draw"
       }
 
