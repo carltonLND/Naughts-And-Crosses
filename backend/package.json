@@ -15,10 +15,12 @@
   "author": "https://github.com/carltonLND",
   "license": "ISC",
   "dependencies": {
-    "socket.io": "^4.7.2"
+    "socket.io": "^4.7.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.5.9",
+    "@types/uuid": "^9.0.3",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "eslint": "^7.28.0",
