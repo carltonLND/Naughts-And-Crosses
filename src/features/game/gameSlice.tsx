@@ -31,12 +31,10 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     setBoardSize: (state, action: PayloadAction<number>) => {
-      if (action.payload >= 3) {
-        state.boardSize = action.payload
-      }
+      state.boardSize = action.payload
     },
-    newBoard: (state, action: PayloadAction<number | undefined>) => {
-      state.board = generateGrid(action.payload ?? state.boardSize)
+    newBoard: (state) => {
+      state.board = generateGrid(state.boardSize)
       state.currPlayer = "O"
       state.winner = null
     },
