@@ -25,17 +25,11 @@ import {
 } from "./gameSlice"
 
 function Game() {
-  const currPlayer = useAppSelector(selectCurrPlayer)
   return (
     <>
       <WinnerModal />
       <VStack gap={10} padding={50}>
-        <Heading>
-          <Heading as="span" color={getPlayerColor(currPlayer)}>
-            {currPlayer}
-          </Heading>
-          's Turn
-        </Heading>
+        <GameTurnIndicator />
         <GameBoard />
       </VStack>
     </>
@@ -122,6 +116,19 @@ function WinnerModal() {
         </ModalBody>
       </ModalContent>
     </Modal>
+  )
+}
+
+function GameTurnIndicator() {
+  const currPlayer = useAppSelector(selectCurrPlayer)
+
+  return (
+    <Heading>
+      <Heading as="span" color={getPlayerColor(currPlayer)}>
+        {currPlayer}
+      </Heading>
+      's Turn
+    </Heading>
   )
 }
 
