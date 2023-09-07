@@ -1,5 +1,13 @@
 import { Server } from "socket.io";
+import useLobbyController from "./controllers/lobbyController";
 
-const server = new Server();
+const io = new Server();
 
-server.listen(4000);
+io.on("connection", (socket) => {
+  const { onNewLobby, onJoinLobby } = useLobbyController(io, socket);
+
+  socket.on("new lobby", onNewLobby);
+  socket.on("join lobby", onJoinLobby);
+});
+
+io.listen(3000);
