@@ -34,9 +34,7 @@ export const gameSlice = createSlice({
       state.boardSize = action.payload
     },
     newBoard: (state) => {
-      state.board = generateGrid(state.boardSize)
-      state.currPlayer = "O"
-      state.winner = null
+      return { ...initialState, board: generateGrid(state.boardSize) }
     },
     claimCell: (state, action: PayloadAction<number>) => {
       const cell = state.board
@@ -48,7 +46,7 @@ export const gameSlice = createSlice({
 
       if (checkWin(state.board, state.currPlayer)) {
         state.winner = state.currPlayer
-      }  else if (checkDraw(state.board)) {
+      } else if (checkDraw(state.board)) {
         state.winner = "draw"
       }
 
