@@ -1,19 +1,20 @@
-import { Flex } from "@chakra-ui/react"
-import Game from "../features/game/Game"
-import Footer from "./Footer"
+import { Route, Routes } from "react-router"
+import { BrowserRouter } from "react-router-dom"
+import Home from "./Home"
+import LocalGame from "./LocalGame"
 
+// TODO: Create RemoteGame component
 function App() {
   return (
-    <Flex
-      height="100vh"
-      width="100vw"
-      justifyContent="space-between"
-      direction="column"
-      userSelect="none"
-    >
-      <Game />
-      <Footer />
-    </Flex>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/">
+          <Route index element={<Home />} />
+          <Route path="local" element={<LocalGame />} />
+          <Route path="remote" element={<LocalGame />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
