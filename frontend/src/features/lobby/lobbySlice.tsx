@@ -1,18 +1,22 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../../app/store"
+import { Player } from "../game/gameLogic"
 
 export interface OnlinePlayer {
   id: string
   name: string
+  token: Player
 }
 
 interface LobbyState {
   id: string
+  thisClient: OnlinePlayer
   clients: OnlinePlayer[]
 }
 
 const initialState: LobbyState = {
   id: "",
+  thisClient: { id: "", name: "", token: "O" },
   clients: [],
 }
 
@@ -22,6 +26,15 @@ export const lobbySlice = createSlice({
   reducers: {
     resetLobby: () => {
       return initialState
+    },
+    setClientToken: (state, action: PayloadAction<Player>) => {
+      state.thisClient.token = action.payload
+    },
+    setClientName: (state, action: PayloadAction<string>) => {
+      state.thisClient.name = action.payload
+    },
+    setClientId: (state, action: PayloadAction<string>) => {
+      state.thisClient.id = action.payload
     },
     setLobbyId: (state, action: PayloadAction<string>) => {
       state.id = action.payload
@@ -46,10 +59,22 @@ export const lobbySlice = createSlice({
   },
 })
 
-export const { resetLobby, setLobbyId, setClients, addClient, removeClient } =
-  lobbySlice.actions
+export const {
+  resetLobby,
+  setLobbyId,
+  setClients,
+  addClient,
+  removeClient,
+  setClientName,
+  setClientId,
+  setClientToken,
+} = lobbySlice.actions
 
 export const selectLobbyId = (state: RootState) => state.lobby.id
 export const selectClients = (state: RootState) => state.lobby.clients
+export const selectThisClientToken = (state: RootState) =>
+  state.lobby.thisClient.token
+export const selectThisClientName = (state: RootState) =>
+  state.lobby.thisClient.name
 
 export default lobbySlice.reducer
