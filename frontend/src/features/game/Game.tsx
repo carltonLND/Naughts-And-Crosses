@@ -15,12 +15,17 @@ import {
 } from "@chakra-ui/react"
 import { useMemo } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import {
+  selectThisClientName,
+  selectThisClientToken,
+} from "../lobby/lobbySlice"
 import { Cell, Player } from "./gameLogic"
 import {
   claimCell,
   newBoard,
   selectBoard,
   selectCurrPlayer,
+  selectIsOnline,
   selectWinner,
 } from "./gameSlice"
 
@@ -120,12 +125,18 @@ function WinnerModal() {
 }
 
 function GameTurnIndicator() {
-  const currPlayer = useAppSelector(selectCurrPlayer)
+  const isOnline = useAppSelector(selectIsOnline)
+
+  const playerToken = isOnline
+    ? useAppSelector(selectThisClientToken)
+    : useAppSelector(selectCurrPlayer)
+
+  const playerName = isOnline ? useAppSelector(selectThisClientName) : null
 
   return (
     <Heading>
-      <Heading as="span" color={getPlayerColor(currPlayer)}>
-        {currPlayer}
+      <Heading as="span" color={getPlayerColor(playerToken)}>
+        {playerName ?? playerToken}
       </Heading>
       's Turn
     </Heading>
