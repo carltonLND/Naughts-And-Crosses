@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router"
 import { BrowserRouter } from "react-router-dom"
 import Home from "./Home"
 import LocalGame from "./LocalGame"
-import RemoteGame from "./RemoteGame"
+import OnlineGame from "./OnlineGame"
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Route path="/">
           <Route index element={<Home />} />
           <Route path="local" element={<LocalGame />} />
-          <Route path="remote" element={<RemoteGame />} />
+          <Route path="remote" element={<OnlineGame />} />
         </Route>
       </Routes>
     </BrowserRouter>

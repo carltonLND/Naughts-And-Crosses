@@ -1,6 +1,6 @@
 import { Divider, SimpleGrid } from "@chakra-ui/react"
 import LocalGameNav from "./LocalGameNav"
-import RemoteGameNav from "./RemoteGameNav"
+import OnlineGameNav from "./OnlineGameNav"
 
 function Home() {
   return (
@@ -12,7 +12,7 @@ function Home() {
     >
       <LocalGameNav />
       <Divider height="50%" orientation="vertical" />
-      <RemoteGameNav />
+      <OnlineGameNav />
     </SimpleGrid>
   )
 }
