@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react"
 import { Link as ReactRouterLink } from "react-router-dom"
 
-function RemoteGameNav() {
+function OnlineGameNav() {
   return (
     <Card userSelect="none">
       <VStack>
@@ -28,4 +28,4 @@ function RemoteGameNav() {
   )
 }
 
-export default RemoteGameNav
+export default OnlineGameNav
