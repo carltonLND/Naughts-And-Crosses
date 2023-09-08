@@ -1,16 +1,16 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../../app/store"
 import {
+  Board,
   Cell,
   Player,
-  Board,
-  generateGrid,
-  checkWin,
-  toggleActivePlayer,
   checkDraw,
+  checkWin,
+  generateGrid,
 } from "./gameLogic"
 
 interface GameBoardState {
+  isOnline: boolean
   currPlayer: Player
   boardSize: number
   board: Board
@@ -20,6 +20,7 @@ interface GameBoardState {
 const initialBoardSize = 3
 
 const initialState: GameBoardState = {
+  isOnline: false,
   currPlayer: "O",
   boardSize: initialBoardSize,
   board: generateGrid(initialBoardSize),
@@ -30,11 +31,18 @@ export const gameSlice = createSlice({
   name: "game",
   initialState,
   reducers: {
+    setIsOnline: (state, action: PayloadAction<boolean>) => {
+      state.isOnline = action.payload
+    },
     setBoardSize: (state, action: PayloadAction<number>) => {
       state.boardSize = action.payload
     },
     newBoard: (state) => {
-      return { ...initialState, board: generateGrid(state.boardSize) }
+      return {
+        ...initialState,
+        isOnline: state.isOnline,
+        board: generateGrid(state.boardSize),
+      }
     },
     claimCell: (state, action: PayloadAction<number>) => {
       const cell = state.board
@@ -61,10 +69,16 @@ export const gameSlice = createSlice({
   },
 })
 
-export const { newBoard, claimCell, swapPlayer, setWinner } = gameSlice.actions
+function toggleActivePlayer(currPlayer: Player): Player {
+  return currPlayer === "O" ? "X" : "O"
+}
+
+export const { newBoard, claimCell, swapPlayer, setWinner, setIsOnline } =
+  gameSlice.actions
 
 export const selectBoard = (state: RootState) => state.game.board
 export const selectCurrPlayer = (state: RootState) => state.game.currPlayer
 export const selectWinner = (state: RootState) => state.game.winner
+export const selectIsOnline = (state: RootState) => state.game.isOnline
 
 export default gameSlice.reducer

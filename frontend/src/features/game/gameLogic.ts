@@ -2,10 +2,6 @@ export type Player = "O" | "X"
 export type Cell = { id: number; ownedBy?: Player }
 export type Board = Cell[][]
 
-export function toggleActivePlayer(currPlayer: Player): Player {
-  return currPlayer === "O" ? "X" : "O"
-}
-
 export function generateGrid(size: number): Cell[][] {
   const grid: Cell[][] = []
   let cellId = 0
