@@ -43,5 +43,13 @@ export default function useLobbyController(io: Server, socket: Socket) {
     io.to(socket.id).emit("lobby joined", players);
   };
 
-  return { onNewLobby, onJoinLobby };
+  const onLeaveLobby = (roomId: string) => {
+    delete nameLookup[socket.id];
+
+    socket.leave(roomId);
+
+    socket.to(roomId).emit("player left", socket.id);
+  };
+
+  return { onNewLobby, onJoinLobby, onLeaveLobby };
 }

@@ -4,10 +4,11 @@ import useLobbyController from "./controllers/lobbyController";
 const io = new Server();
 
 io.on("connection", (socket) => {
-  const { onNewLobby, onJoinLobby } = useLobbyController(io, socket);
+  const lobbyController = useLobbyController(io, socket);
 
-  socket.on("new lobby", onNewLobby);
-  socket.on("join lobby", onJoinLobby);
+  socket.on("new lobby", lobbyController.onNewLobby);
+  socket.on("join lobby", lobbyController.onJoinLobby);
+  socket.on("leave lobby", lobbyController.onLeaveLobby);
 });
 
 io.listen(3000);
